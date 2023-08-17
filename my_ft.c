@@ -149,11 +149,16 @@ char **my_split_str(char *str)
         while (!is_space(str[i]) && str[i])
             i++;
         end = i;
+
+        if (str[i]) // on verifie Que la chaine n'est pas NULL ! (car sinon ca alloue quand meme un espace !)
+        {
         str_split[index_newstr] = malloc(sizeof(char) * (end - start) + 1);
         if (!str_split[index_newstr])
             return NULL;
         my_wordcpy(str_split[index_newstr], str + start);
         index_newstr++;
+        }
+        
     }
     str_split[index_newstr] = NULL;
     return str_split;
