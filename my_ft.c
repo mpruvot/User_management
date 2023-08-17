@@ -125,6 +125,9 @@ int count_words(char *str)
 // Split a String into multiple strings
 char **my_split_str(char *str)
 {
+    if (!str)
+        return NULL;
+    
     int i;
     int index_newstr;
     int start;
