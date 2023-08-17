@@ -17,6 +17,13 @@ typedef struct s_user {
   struct s_list *next;
 } t_user;
 
+// List to Store Input history
+typedef struct s_history {
+  char *type;
+  char *name;
+  struct s_list *next;
+} t_history;
+
 // Fonction to print a list
 void print_list(t_user *lst);
 
