@@ -3,26 +3,20 @@
 
 #include <unistd.h>
 
-// General Single Linked List
-typedef struct s_list {
-  void *content;
-  struct s_list *next;
-} t_list;
-
-
-// Linked list to Store User infos
+// struct User infos
 typedef struct s_user {
-  char *type;
+  char *role;
   char *name;
-  struct s_list *next;
 } t_user;
 
-// List to Store Input history
-typedef struct s_history {
-  char *type;
-  char *name;
-  struct s_list *next;
-} t_history;
+//struct Command
+typedef struct s_commands{
+  char *exit;
+  char *create;
+  char *history;
+  char *list;
+  char *delete;
+} t_commands;
 
 // Fonction to print a list
 void print_list(t_user *lst);

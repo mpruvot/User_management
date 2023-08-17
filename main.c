@@ -3,35 +3,36 @@
 #include <unistd.h>
 #include "my_ft.h"
 #include "mgmt.h"
+#include "my_struct.h"
 
 
 int main()
-{
-    int i;
-    char *user_input = NULL;
-    char **split_input = NULL;
+{    
+    int is_running;
+    char **user_input = NULL;
 
-    i = 0;
+    t_commands command = {
+        .exit = "exit",
+        .create = "create",
+        .history = "history",
+        .list = "list",
+        .delete = "delete"
+    };
+    is_running = 1;
 
     my_putstr("Welcome in user management system.\n");
-    my_putstr("Please type a command.\n> ");
 
-    user_input = get_input();
-    split_input = my_split_str(user_input);
-    if (!split_input[0]) // Si le premier élément est null, c'est que l'utilisateur n'a saisi que des espaces
+
+    while(is_running)
     {
-        printf("No valid input \"only space\"\n");
+        my_putstr("Please type a command> ");
+        user_input = my_split_str(get_input());
+        if (my_strcmp(user_input[0], command.exit)== 0)
+            is_running = 0;
+        else
+        printf("input = %s\n", user_input[0]);
     }
-    else
-    {
-        while (split_input[i])
-        {
-            printf("input %d = %s \n", i, split_input[i]);
-            i++;
-        }
-    }
-
-    free(user_input);
-
+    printf("bye! \n");
+    free_double_tab(user_input);
     return 0;
 }

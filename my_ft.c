@@ -31,8 +31,6 @@ void my_putstr(char *str)
         my_putchar(str[i]);
         i++;
     }
-
-    my_putchar('\n');
 }
 
 // Outputs an integer
@@ -175,4 +173,16 @@ int my_strcmp(char *str1, char *str2)
     while (str1[i] && str1[i] == str2[i])
         i++;
     return(str1[i] - str2[i]);
+}
+// Free char **
+void free_double_tab(char **tab)
+{
+    int i = 0;
+
+    while (tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
 }

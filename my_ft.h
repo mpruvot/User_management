@@ -7,12 +7,6 @@
 
 #include <unistd.h>
 
-
-typedef struct s_list {
-  void *content;
-  struct s_list *next;
-} t_list;
-
 // Outputs a character
 void my_putchar(char c);
 
@@ -39,6 +33,10 @@ int my_strcmp(char *str1, char *str2);
 
 // Split a String into multiple strings
 char **my_split_str(char *str);
+
+// Free char **
+void free_double_tab(char **tab);
+
 
 #endif // MY_FT_H
 // End of the #ifndef directive. Everything between #ifndef and #endif
