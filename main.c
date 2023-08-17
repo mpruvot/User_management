@@ -17,7 +17,6 @@ int main()
     my_putstr("Please type a command.\n> ");
 
     user_input = get_input();
-
     split_input = my_split_str(user_input);
     if (!split_input[0]) // Si le premier élément est null, c'est que l'utilisateur n'a saisi que des espaces
     {

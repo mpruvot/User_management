@@ -150,7 +150,7 @@ char **my_split_str(char *str)
             i++;
         end = i;
 
-        if (str[i]) // on verifie Que la chaine n'est pas NULL ! (car sinon ca alloue quand meme un espace !)
+        if (str[i]) // on verifie Que la chaine n'est pas NULL ! (car sinon ca alloue quand meme un espace !!!)
         {
         str_split[index_newstr] = malloc(sizeof(char) * (end - start) + 1);
         if (!str_split[index_newstr])
