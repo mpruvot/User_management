@@ -31,6 +31,15 @@ char *my_strcpy(char *dest, char *src);
 //Verify if it's a space
 int is_space(char c);
 
+// count words in a string
+int count_words(char *str);
+
+// Compare Two strings
+int my_strcmp(char *str1, char *str2);
+
+// Split a String into multiple strings
+char **my_split_str(char *str);
+
 #endif // MY_FT_H
 // End of the #ifndef directive. Everything between #ifndef and #endif
 // will be ignored if MY_FT_H is already defined, thus preventing multiple definitions.

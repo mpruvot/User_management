@@ -1,7 +1,9 @@
-#ifndef GET_INPUT_H
-#define GET_INPUT_H
+#ifndef MGMT_H
+#define MGMT_H
 
 // Count the occurences of a letter in a file.
 char *get_input();
 
-#endif // GET_INPUT_H
+
+
+#endif // MGMT_H

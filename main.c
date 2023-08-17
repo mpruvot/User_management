@@ -2,14 +2,20 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "my_ft.h"
-#include "get_input.h"
+#include "mgmt.h"
+
 
 int main()
 {
+    char *user_input = NULL;
+
     my_putstr("Welcome in user management system.\n");
     my_putstr("Please type a command.\n> ");
 
-    get_input();
-    
+    user_input = get_input();
+
+    printf("%s", user_input);
+    free(user_input);
+
     return 0;
 }
