@@ -23,7 +23,7 @@ void print_list(t_list *lst)
 t_list *new_element(void *content, size_t size)
 {
     t_list *new_element;
-    int *content_ptr;
+    void *content_ptr;
 
     content_ptr = malloc(size);
     if (!content_ptr)

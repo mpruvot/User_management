@@ -4,10 +4,10 @@
 #include <unistd.h>
 
 // struct User infos
-typedef struct s_user {
+typedef struct s_users {
   char *role;
   char *name;
-} t_user;
+} t_users;
 
 //struct Command
 typedef struct s_commands{
@@ -18,8 +18,6 @@ typedef struct s_commands{
   char *delete;
 } t_commands;
 
-// Fonction to print a list
-void print_list(t_user *lst);
 
 #endif // MY_STRUCT_H
 // End of the #ifndef directive. Everything between #ifndef and #endif

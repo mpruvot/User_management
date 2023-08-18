@@ -186,3 +186,13 @@ void free_double_tab(char **tab)
     }
     free(tab);
 }
+
+int tab_count(char **tab)
+{
+    int count = 0;
+    while (tab && tab[count]) 
+    {
+        count++;
+    }
+    return count;
+}

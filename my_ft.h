@@ -37,6 +37,8 @@ char **my_split_str(char *str);
 // Free char **
 void free_double_tab(char **tab);
 
+// compte le nombre de sous tab
+int tab_count(char **tab);
 
 #endif // MY_FT_H
 // End of the #ifndef directive. Everything between #ifndef and #endif

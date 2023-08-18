@@ -1,4 +1,4 @@
-#include "mgmt.h"
+#include "cmd.h"
 #include "my_ft.h"
 #include <unistd.h>
 #include <stdlib.h>
@@ -21,6 +21,54 @@ char *get_input() //
         my_strcpy(result, buff);
     
     return(result);
+}
+
+// print_list_name
+
+void print_names(t_list *head)
+{
+
+}
+
+// Print_list_role
+
+void print_role(t_list *head)
+{
+
+}
+
+//void Add Struct to list
+
+void Add_to_list(t_list **head, t_users *user)
+{
+
+}
+
+// CREATE
+void create()
+{
+
+}
+
+
+// LIST
+void list()
+{
+
+}
+
+
+// DELETE
+void delete()
+{
+
+}
+
+// HISTORY
+
+void history()
+{
+    
 }
 
 // Here we store the read string in a Str that we can compare later!
