@@ -9,14 +9,36 @@ typedef struct s_users {
   char *name;
 } t_users;
 
-//struct Command
-typedef struct s_commands{
-  char *exit;
-  char *create;
-  char *history;
-  char *list;
-  char *delete;
-} t_commands;
+// Single linked list
+typedef struct s_list {
+  void *content;
+  struct s_list *next;
+} t_list;
+
+//-----------------------------------//
+
+// Print elements of a list
+void print_list(t_list *lst);
+
+// Create a New Element
+t_list *new_element(void *content, size_t size);
+
+// Add A new node at frnt
+void lstadd_front(t_list **lst, t_list *new);
+
+//count list size
+int lst_count(t_list *lst);
+
+// Add a node at the end
+void lstadd_back(t_list **lst, t_list *new);
+
+void del(void *content);
+
+// clear a list
+void lstclear(t_list **lst, void (*del)(void *));
+
+// return a node at index
+t_list *lst_get_index(t_list *lst, int index);
 
 
 #endif // MY_STRUCT_H

@@ -15,12 +15,12 @@ CC	:= gcc
 # SOURCES
 
 # List the source files without extension
-SRC_FILES := main.c my_ft.c my_struct.c mgmt.c
+SRC_FILES := main.c my_ft.c my_struct.c cmd.c 
 # Use addsuffix to generate object file names from source files
 OBJ_FILES := ${SRC_FILES:.c=.o}
 
 # List of header files
-HEADERS := my_ft.h my_struct.h mgmt.h
+HEADERS := my_ft.h my_struct.h cmd.h 
 	
 # **************************************************************************** #
 # RULES

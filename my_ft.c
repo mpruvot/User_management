@@ -123,9 +123,6 @@ int count_words(char *str)
 // Split a String into multiple strings
 char **my_split_str(char *str)
 {
-    if (!str)
-        return NULL;
-    
     int i;
     int index_newstr;
     int start;
@@ -174,6 +171,7 @@ int my_strcmp(char *str1, char *str2)
         i++;
     return(str1[i] - str2[i]);
 }
+
 // Free char **
 void free_double_tab(char **tab)
 {
@@ -187,6 +185,7 @@ void free_double_tab(char **tab)
     free(tab);
 }
 
+// Count Tab in tab
 int tab_count(char **tab)
 {
     int count = 0;

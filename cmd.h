@@ -4,44 +4,24 @@
 #include "my_ft.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "list_ft.h"
 #include "my_struct.h"
 
-
-// print_list_name
-
-void print_names(t_list *head);
-
-// Print_list_role
-
-void print_role(t_list *head);
-
-//void Add Struct to list
-
-void Add_to_list(t_list **head, t_users user)
-
-// Count the occurences of a letter in a file.
+// Get input from User
 char *get_input();
 
-// CREATE
-void create();
+// Exit_check_command
+int is_exit(char *input);
 
+// List_check_input
+int is_list(char *input);
 
-// LIST
-void list();
+// Create_check_command
+int is_create(char *input);
 
+// Delete_check_command
+int is_delete(char *input);
 
-// DELETE
-void delete();
-
-// HISTORY
-
-void history();
-
-
-// Print Name
-
-
-
+// History_check_command
+int is_history(char *input);
 
 #endif // CMD_H
