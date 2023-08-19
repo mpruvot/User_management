@@ -3,17 +3,26 @@
 
 #include <unistd.h>
 
-// struct User infos
+// struct Store User infos
 typedef struct s_users {
   char *role;
   char *name;
 } t_users;
+
+//struct Store history
+typedef struct s_history{
+  char *input;
+  
+}t_history;
+
 
 // Single linked list
 typedef struct s_list {
   void *content;
   struct s_list *next;
 } t_list;
+
+
 
 //-----------------------------------//
 

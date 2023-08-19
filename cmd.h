@@ -25,8 +25,8 @@ int is_delete(char *input);
 int is_history(char *input);
 
 // Print_cmd_list
-void print_cmd_list(t_list *lst, char **input);
+void print_cmd_list(t_list *lst);
 
 // Add element to T_list Store_user
-void add_to_store_user(t_list **store, char **input);
+int add_to_store_user(t_list **store, char **input);
 #endif // CMD_H
