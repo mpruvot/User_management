@@ -108,7 +108,7 @@ void print_cmd_list(t_list *lst, char **input)
 */
 
 // Add element to T_list Store_user
-void add_to_store_user(t_list **store, char **input, t_users *infos)
+void add_to_store_user(t_list **store, char **input)
 {
     t_list *new_user_node;
     t_users *new_user;
@@ -149,6 +149,6 @@ void add_to_store_user(t_list **store, char **input, t_users *infos)
 
     ///// Maintenant, on doit ajouter ce nouveau Node qui contient la struct a la liste store pasée en param !
     // On l'ajoute au debut de la liste comme ca Qu'on on printera l'history on aura les plus recent en premier.
-     lstadd_front(&store, new_user_node);
+     lstadd_front(store, new_user_node);
 }
 
