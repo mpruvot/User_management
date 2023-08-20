@@ -195,3 +195,65 @@ int tab_count(char **tab)
     }
     return count;
 }
+
+// duplicate a str
+char *my_strdup(char *str)
+{
+    char *dup_str;
+    dup_str = malloc(my_strlen(str) + 1);
+    if (!dup_str)
+        return NULL;
+    
+    my_strcpy(dup_str, str);
+    return dup_str;
+}
+
+// Print double_tab
+char *double_tab_to_str(char **tab)
+{
+    int i;
+    int j;
+    int k;
+    int len;
+
+    char *new_str = NULL;
+
+    len = 0;
+    i = 0;
+    j = 0;
+    k = 0;
+
+    while (tab[i])
+    {
+        len += my_strlen(tab[i]);
+        if (tab[i + 1])
+            len++; // Pour allouer la mmemoire pour les espaces
+        
+        i++;
+    }
+    new_str = malloc(len + 1);
+    if (!new_str)
+        return NULL;
+    
+
+    while (tab[j])
+    {
+        i = 0;
+        while (tab[j][i])
+        {
+            new_str[k] = tab[j][i];
+            i++;
+            k++;
+        }
+        if (tab[j + 1])
+        {
+            new_str[k] = ' '; 
+            k++;
+        }
+        j++;
+    }
+    new_str[k] = '\0';
+
+    return new_str;
+    
+}

@@ -34,11 +34,17 @@ int my_strcmp(char *str1, char *str2);
 // Split a String into multiple strings
 char **my_split_str(char *str);
 
+// concat double_tab into str
+char *double_tab_to_str(char **tab);
+
 // Free char **
 void free_double_tab(char **tab);
 
 // compte le nombre de sous tab
 int tab_count(char **tab);
+
+// duplicate a str
+char *my_strdup(char *str);
 
 #endif // MY_FT_H
 // End of the #ifndef directive. Everything between #ifndef and #endif
