@@ -106,6 +106,28 @@ void print_cmd_list(t_list *lst)
     }
 } 
 
+void print_cmd_history(t_list *history)
+{
+    if (!history)
+    {
+        printf("History is empty.\n");
+        return;
+    }
+
+    t_list *current = NULL;
+    current = history;
+
+    t_history *temp = NULL;
+
+    while (current)
+    {
+        temp = current->content;
+        write(1, temp->inputs, my_strlen(temp->inputs));
+        my_putchar('\n');
+        current = current->next;
+    }
+} 
+
 
 // Add element to T_list Store_user
 int add_to_store_user(t_list **store, char **input)
@@ -132,11 +154,7 @@ int add_to_store_user(t_list **store, char **input)
         return -1;
     }
     // Ici on assigne le name mais vu qu'on ne sais pas ce quee l'utilisateur entre, on doit copier la str
-    new_user->name = malloc(my_strlen(input[2])+ 1);
-    if (!new_user->name)
-        return -1;
-    my_strcpy(new_user->name, input[2]);
-
+    new_user->name = my_strdup(input[2]);
     // On passe la struct a la t_list (en gros la t_list va pouvoir parcourir les structs.)
     new_user_node->content = new_user;
     new_user_node->next = NULL;
@@ -144,10 +162,48 @@ int add_to_store_user(t_list **store, char **input)
     ///// Maintenant, on doit ajouter ce nouveau Node qui contient la struct a la liste store pasée en param !
     // On l'ajoute au debut de la liste comme ca Qu'on on printera l'history on aura les plus recent en premier.
      lstadd_front(store, new_user_node);
-
-
     // test 
-    printf("User added!\n");
+    // printf("User added!\n");
+
+    // Print success
+    write(1, new_user->role, my_strlen(new_user->role));
+    my_putchar(' ');
+    write(1, input[2], my_strlen(input[2]));
+    my_putstr(" succefully created! \n");
     return 1;
 }
 
+// Add user inputs to history
+int add_to_history(t_list **store, char **input)
+{
+    t_list *history_node;
+    t_history *history;
+  
+    history_node = malloc(sizeof(t_list));
+    if (!history_node)
+        return -1;
+
+    // Ici on crée une struct Et on copie argc 1 (role)
+    history = malloc(sizeof(t_history));
+    if (!history)
+    {   
+        free(history_node);
+        return -1;
+    }
+    // on copie les iputs concat dans history->inputs
+    history->inputs = double_tab_to_str(input);
+    if (!history->inputs)
+        return -1;
+   
+    // On passe la struct a la t_list (en gros la t_list va pouvoir parcourir les structs.)
+    history_node->content = history;
+    history_node->next = NULL;
+
+    ///// Maintenant, on doit ajouter ce nouveau Node qui contient la struct a la liste store pasée en param !
+    // On l'ajoute au debut de la liste comme ca Qu'on on printera l'history on aura les plus recent en premier.
+     lstadd_front(store, history_node);
+
+    // test 
+    //printf("added to history\n");
+    return 1;
+}

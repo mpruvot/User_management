@@ -10,6 +10,7 @@ int main()
     int is_running;
     char **user_input = NULL;
     t_list *store_users = NULL;
+    t_list *history = NULL;
 
     store_users = NULL;
 
@@ -33,12 +34,11 @@ int main()
                 /* code */
             }
             else if (is_list(user_input[0]))
-            {
                 print_cmd_list(store_users);
-            }
+            
             else if (is_history(user_input[0]))
             {
-                // Add history
+                print_cmd_history(history);
             }
             else
             { 
@@ -57,6 +57,7 @@ int main()
             //my_putstr("User_management: Command not found: ");
         }
 
+        add_to_history(&history, user_input);
         free_double_tab(user_input);
     }
 

@@ -27,6 +27,12 @@ int is_history(char *input);
 // Print_cmd_list
 void print_cmd_list(t_list *lst);
 
+void print_cmd_history(t_list *history);
+
+
 // Add element to T_list Store_user
 int add_to_store_user(t_list **store, char **input);
+
+// Add user inputs to history
+int add_to_history(t_list **store, char **input);
 #endif // CMD_H

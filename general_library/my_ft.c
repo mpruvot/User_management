@@ -208,7 +208,7 @@ char *my_strdup(char *str)
     return dup_str;
 }
 
-// Print double_tab
+// concat double_tab into str
 char *double_tab_to_str(char **tab)
 {
     int i;

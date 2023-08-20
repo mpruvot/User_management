@@ -9,11 +9,6 @@ typedef struct s_users {
   char *name;
 } t_users;
 
-//struct Store history
-typedef struct s_history{
-  char *input;
-  
-}t_history;
 
 
 // Single linked list
@@ -22,6 +17,9 @@ typedef struct s_list {
   struct s_list *next;
 } t_list;
 
+typedef struct s_history {
+  char *inputs;
+}t_history;
 
 
 //-----------------------------------//

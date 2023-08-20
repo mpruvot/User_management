@@ -5,7 +5,8 @@
 NAME	:= user_management
 
 # Define the flags for the compiler
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -Igeneral_library -Istructures_library -Iuser_management_library
+
 
 # Define the C compiler to use
 CC	:= gcc
@@ -15,7 +16,10 @@ CC	:= gcc
 # SOURCES
 
 # List the source files without extension
-SRC_FILES := main.c my_ft.c my_struct.c cmd.c 
+SRC_FILES := main.c \
+             general_library/my_ft.c \
+             structures_library/my_struct.c \
+             user_management_library/cmd.c
 # Use addsuffix to generate object file names from source files
 OBJ_FILES := ${SRC_FILES:.c=.o}
 
