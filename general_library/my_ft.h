@@ -16,6 +16,9 @@ int my_strlen(char *str);
 // Outputs a string
 void my_putstr(char *str);
 
+// Same but on Err_output
+void my_putstr_err(char *str);
+
 // Outputs an integer
 void my_putnbr(int nb);
 

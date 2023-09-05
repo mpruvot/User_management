@@ -4,63 +4,59 @@
 #include "my_ft.h"
 #include "cmd.h"
 #include "my_struct.h"
+#include "const.h"
+
 
 int main()
 {    
     int is_running;
+    int checkcmd;
     char **user_input = NULL;
-    t_list *store_users = NULL;
-    t_list *history = NULL;
+    t_mgmt *mgmt = malloc(sizeof(t_mgmt));
+    if (!mgmt)
+        return (-1);
+    mgmt->store_user = NULL;
+    mgmt->history = NULL;
 
-    store_users = NULL;
-
+    checkcmd = -1;
     is_running = 1;
+    t_cmd cmd = {"exit", "create", "list", "delete", "history"}; // Adpat check_cmd() if cmd added
 
-    my_putstr("Welcome in user management system.\n");
+    my_putstr(WELCOM_MSG);
 
     while (is_running)
     {
-        my_putstr("\nPlease type a command > ");
+        my_putstr(ASK_FOR_CMD);
         user_input = my_split_str(get_input());
-
-        if (tab_count(user_input) == 1)
+        checkcmd = check_cmd(user_input, cmd);
+        mgmt->user_input = user_input;
+        
+        if (checkcmd == EXIT)
         {
-            if (is_exit(user_input[0]))
-                is_running = 0;   
-            else if (is_create(user_input[0]))  
-                my_putstr("User_management: expected: create <admin>/<user> <name> \n");       
-            else if (is_delete(user_input[0]))
-            {
-                /* code */
-            }
-            else if (is_list(user_input[0]))
-                print_cmd_list(store_users);
-            
-            else if (is_history(user_input[0]))
-            {
-                print_cmd_history(history);
-            }
-            else
-            { 
-                my_putstr("User_management: Command not found: ");
-                write(1, user_input[0], my_strlen(user_input[0]));
-                my_putstr("\n");
-            }
+            is_running = 0;
         }
-        else if (tab_count(user_input) == 3)
+        else if (checkcmd == CREATE)
+            add_to_store_user(mgmt, user_input);
+        else if (checkcmd == LIST)
+            print_cmd_list(mgmt);
+        else if (checkcmd == DELETE)
         {
-            if (is_create(user_input[0]))
-                add_to_store_user(&store_users, user_input);
+            /* code */
         }
+        else if (checkcmd == HISTORY)
+            print_cmd_history(mgmt);
         else
-        {
-            //my_putstr("User_management: Command not found: ");
+        {    
+            my_putstr_err(CMD_NOT_FOUND);
+            my_putstr_err(user_input[0]);
+            my_putchar('\n');
+
         }
 
-        add_to_history(&history, user_input);
-        free_double_tab(user_input);
+        add_to_history(mgmt, user_input);
     }
-
     printf("\nbye! \n");
     return 0;
 }
+
+//https://zestedesavoir.com/tutoriels/1733/termcap-et-terminfo/

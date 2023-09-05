@@ -33,6 +33,17 @@ void my_putstr(char *str)
     }
 }
 
+void my_putstr_err(char *str)
+{
+    int i = 0;
+
+    while(str[i])
+    {
+        write(2, &str[i], 1);
+        i++;
+    }
+}
+
 // Outputs an integer
 void my_putnbr(int nb)
 {

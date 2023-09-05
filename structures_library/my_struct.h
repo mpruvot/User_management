@@ -9,8 +9,6 @@ typedef struct s_users {
   char *name;
 } t_users;
 
-
-
 // Single linked list
 typedef struct s_list {
   void *content;
@@ -20,6 +18,21 @@ typedef struct s_list {
 typedef struct s_history {
   char *inputs;
 }t_history;
+
+// Struct_cmd
+typedef struct s_cmd {
+  char *exit;
+  char *create;
+  char *list;
+  char *delete;
+  char *history;
+} t_cmd;
+
+typedef struct s_mgmt {
+  t_list *store_user;
+  t_list *history;
+  char **user_input;
+} t_mgmt; 
 
 
 //-----------------------------------//
