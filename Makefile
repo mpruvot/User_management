@@ -5,7 +5,7 @@
 NAME	:= user_management
 
 # Define the flags for the compiler
-CFLAGS := -Wall -Wextra -Werror -Igeneral_library -Istructures_library -Iuser_management_library
+CFLAGS := -g -Wall -Wextra -Werror -Igeneral_library -Istructures_library -Iuser_management_library
 
 
 # Define the C compiler to use

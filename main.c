@@ -40,9 +40,7 @@ int main()
         else if (checkcmd == LIST)
             print_cmd_list(mgmt);
         else if (checkcmd == DELETE)
-        {
-            /* code */
-        }
+            user_mgmt_delete(mgmt);
         else if (checkcmd == HISTORY)
             print_cmd_history(mgmt);
         else

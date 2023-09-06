@@ -36,7 +36,9 @@ void my_putstr(char *str)
 void my_putstr_err(char *str)
 {
     int i = 0;
-
+    if(!str)
+        return;
+        
     while(str[i])
     {
         write(2, &str[i], 1);

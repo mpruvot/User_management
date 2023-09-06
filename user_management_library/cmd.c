@@ -6,7 +6,7 @@
 #include <fcntl.h>
 
 
-//Fonction to get an input from std in
+
 char *get_input() // 
 {   
     char buff[BUFF_LEN];
@@ -73,7 +73,7 @@ void print_cmd_list(t_mgmt *mgmt)
         return;
     if (!mgmt->store_user)
     {
-        my_putstr_err("List is empty \n");
+        my_putstr_err("List is empty !\n");
         return;
     }
 
@@ -93,15 +93,17 @@ void print_cmd_list(t_mgmt *mgmt)
         {
             print_user_by_role(current, role, &found);
             if (found == 0)
-                printf("list of %s is empty\n", mgmt->user_input[1]);
+                printf("list of %s is empty !\n", mgmt->user_input[1]);
         }
         else
         {   
             my_putstr_err("User_management: ");
             my_putstr_err(role);
-            my_putstr_err(" is not a valid role\n");
+            my_putstr_err(" is not a valid role !\n");
         }
     }
+    else
+        my_putstr_err("User_management: Invalid cmd: expected: list <user> or <name>\n");
 }
     
 void print_cmd_history(t_mgmt *mgmt)
@@ -128,7 +130,6 @@ void print_cmd_history(t_mgmt *mgmt)
     }
 } 
 
-// Add element to T_list Store_user
 int add_to_store_user(t_mgmt *mgmt, char **input)
 {
     t_list *new_user_node;
@@ -175,7 +176,6 @@ int add_to_store_user(t_mgmt *mgmt, char **input)
     return 1;
 }
 
-// Add user inputs to history
 int add_to_history(t_mgmt *mgmt, char **input)
 {
     t_list *history_node;
@@ -209,3 +209,194 @@ int add_to_history(t_mgmt *mgmt, char **input)
     return 1;
 }
 
+void user_mgmt_delete(t_mgmt *mgmt)
+{
+    if (!mgmt || !mgmt->store_user)
+    {
+        my_putstr_err("Nothing to delete here, list is already empty!\n");
+        return;
+    }
+    int role_nb = role_counter(mgmt);
+    int find_name = name_counter(mgmt);
+    int argc = tab_count(mgmt->user_input);
+    char *role = mgmt->user_input[1];
+    char *name = NULL;
+    char **yes_no;
+
+    if (argc > 1 && argc < 4)
+    {
+        name = mgmt->user_input[2];
+        if (argc == 2 && (my_strcmp(role, "user") == 0 || my_strcmp(role, "admin") == 0))
+        {
+            if (role_nb == 0)
+            {
+                my_putstr_err("Nothing to delete here, list is already empty!\n");
+                return;
+            }
+
+            while (1)
+            {
+                printf("are you sure you want to delete %d %s? y/n : \n", role_nb, role);
+                yes_no = my_split_str(get_input());
+                my_putchar('\n');
+
+                if (my_strcmp(yes_no[0], "y") == 0)
+                {
+                    delete_users_by_role(&mgmt->store_user, role);
+                    return;
+                }
+                else if (my_strcmp(yes_no[0], "n") == 0)
+                {
+                    my_putstr("Deletion cancelled !\n\n");                    
+                    return;
+                }
+                else
+                    my_putstr("Please enter a valid command. \n\n");
+            }  
+           
+        }
+        else if (argc == 3 && (my_strcmp(role, "user") == 0 || my_strcmp(role, "admin") == 0))
+        {
+            if (find_name == 0)
+            {
+                my_putstr_err("Nobody found under this name !\n");
+                return;
+            }
+            else
+                delete_users_by_name(&mgmt->store_user, role, name);
+                return;
+        }
+    }
+    else
+       my_putstr_err("User_management: Invalid cmd: expected: <delete> <role> or <delete> <role> + <name>\n"); 
+    
+}
+
+void delete_users_by_role(t_list **head_user, char *role) 
+{
+    t_list *current = *head_user; // Pointeur vers l'élément courant de la liste
+    t_list *previous = NULL;      // Pointeur vers l'élément précédent de la liste
+    t_users *temp = NULL;        // Pointeur temporaire pour stocker les données utilisateur
+    t_list *temp_free = NULL;
+
+    // Boucle à travers la liste chaînée
+    while (current) 
+    {
+        temp = current->content; // Récupère les données utilisateur de l'élément courant
+
+        if (my_strcmp(temp->role, role) == 0) 
+        {
+            temp_free = current; // garde une trace de current pour le liberer plus tard
+
+            // Si un élément précédent existe, ajuste son pointeur 'next' pour sauter l'élément courant
+            if (previous) 
+            {
+                previous->next = current->next;
+                current = previous->next; // Ajuste le pointeur 'current' pour le prochain tour de boucle
+            } 
+            else 
+            {
+                // Si aucun élément précédent n'existe, change la tête de la liste
+                *head_user = current->next;
+                current = *head_user; // Ajuste le pointeur 'current' pour le prochain tour de boucle
+            }
+
+            // Libère l'élément courant de la mémoire
+            free(temp_free);
+
+        } 
+        else 
+        {
+            // Met à jour le pointeur 'previous' et avance dans la liste
+            previous = current;
+            current = current->next;
+            //
+        }
+    }
+   printf("All the %s have been succesfully deleted.\n", role);
+}
+
+void delete_users_by_name(t_list **head_user, char *role, char *name)
+{
+    t_list *current = *head_user; // Pointeur vers l'élément courant de la liste
+    t_list *previous = NULL;      // Pointeur vers l'élément précédent de la liste
+    t_users *temp = NULL;        // Pointeur temporaire pour stocker les données utilisateur
+    t_list *temp_free = NULL;
+
+    // Boucle à travers la liste chaînée
+    while (current) 
+    {
+        temp = current->content; // Récupère les données utilisateur de l'élément courant
+
+        if (my_strcmp(temp->name, name) == 0 && my_strcmp(temp->role, role) == 0) 
+        {
+            temp_free = current; // garde une trace de current pour le liberer plus tard
+
+            // Si un élément précédent existe, ajuste son pointeur 'next' pour sauter l'élément courant
+            if (previous) 
+            {
+                previous->next = current->next;
+                current = previous->next; // Ajuste le pointeur 'current' pour le prochain tour de boucle
+            } 
+            else 
+            {
+                // Si aucun élément précédent n'existe, change la tête de la liste
+                *head_user = current->next;
+                current = *head_user; // Ajuste le pointeur 'current' pour le prochain tour de boucle
+            }
+
+            // Libère l'élément courant de la mémoire
+            free(temp_free);
+
+        } 
+        else 
+        {
+            // Met à jour le pointeur 'previous' et avance dans la liste
+            previous = current;
+            current = current->next;
+            //
+        }
+    }
+
+    printf("user %s have been succesfully deleted.\n", name);
+}
+
+int role_counter(t_mgmt *mgmt)
+{
+    t_list *current = NULL;
+    t_users *temp = NULL;
+    int nb;
+    char *role;
+
+    nb = 0;
+    current = mgmt->store_user;
+    role = mgmt->user_input[1];
+    while(current)
+    {
+        temp = current->content;
+        if (my_strcmp(temp->role, role) == 0)
+            nb++;
+        current = current->next;
+    }
+    return nb;
+}
+
+int name_counter(t_mgmt *mgmt)
+{
+    t_list *current = NULL;
+    t_users *temp = NULL;
+    int nb;
+    char *name;
+
+    nb = 0;
+    current = mgmt->store_user;
+    name = mgmt->user_input[2];
+    while(current)
+    {
+        temp = current->content;
+        if (my_strcmp(temp->name, name) == 0)
+            nb++;
+        current = current->next;
+    }
+    return nb;
+}

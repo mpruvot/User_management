@@ -26,27 +26,27 @@
 - [x]  **Identifier la commande "create".**
 - [x]  **Extraire le type d'utilisateur et le nom.**
 - [x]  **Vérifier le type** (doit être "user" ou "admin").
-- [ ]  **Gérer les erreurs** :
+- [x]  **Gérer les erreurs** :
     - [x]  Si le type ou le nom est manquant.
     - [x]  Si le type est invalide.
-- [ ]  **Si tout est valide, créer l'utilisateur et afficher le message de succès.**
+- [x]  **Si tout est valide, créer l'utilisateur et afficher le message de succès.**
 
 ### Commande "list" :
 
 - [x]  **Identifier la commande "list".**
-- [ ]  **Si un type est spécifié, lister uniquement les utilisateurs de ce type.**
+- [x]  **Si un type est spécifié, lister uniquement les utilisateurs de ce type.**
 - [x]  **Sinon, lister tous les utilisateurs.**
 
 ### Commande "delete" :
 
-- [ ]  **Identifier la commande "delete".**
-- [ ]  **Si un nom est spécifié** :
-    - [ ]  Rechercher l'utilisateur.
-    - [ ]  Supprimer l'utilisateur.
-    - [ ]  Afficher le message de succès.
-- [ ]  **Si un type est spécifié** :
-    - [ ]  Demander une confirmation.
-    - [ ]  Si confirmé, supprimer tous les utilisateurs de ce type.
+- [x]  **Identifier la commande "delete".**
+- [x]  **Si un nom est spécifié** :
+    - [x]  Rechercher l'utilisateur.
+    - [x]  Supprimer l'utilisateur.
+    - [x]  Afficher le message de succès.
+- [x]  **Si un type est spécifié** :
+    - [x]  Demander une confirmation.
+    - [x]  Si confirmé, supprimer tous les utilisateurs de ce type.
 
 ### Commande "history" :
 
@@ -58,9 +58,9 @@
 - [x]  **Définir une structure pour les utilisateurs.**
 - [x]  **Définir une structure pour la liste chaînée des utilisateurs.**
 - [x]  **Définir une structure pour la liste chaînée de l'historique des commandes.**
-- [ ]  **Implémenter des fonctions pour** :
+- [x]  **Implémenter des fonctions pour** :
     - [x]  Ajouter un utilisateur.
-    - [ ]  Supprimer un utilisateur.
+    - [x]  Supprimer un utilisateur.
     - [x]  Lister les utilisateurs.
     - [x]  Ajouter une commande à l'historique.
 - [ ]  **Assurer qu'il n'y a pas de fuites mémoire** :
@@ -72,4 +72,4 @@
 - [x]  **Gérer les espaces superflus dans les commandes.**
 - [ ]  **Assurer une bonne documentation du code.**
 - [ ]  **Veiller à ce que le code soit propre et bien organisé.**
-- [ ]  **Tester régulièrement après chaque étape majeure.**
+- [x]  **Tester régulièrement après chaque étape majeure.**
