@@ -193,9 +193,12 @@ void free_double_tab(char **tab)
     while (tab[i])
     {
         free(tab[i]);
+        tab[i] = NULL;
         i++;
     }
     free(tab);
+    tab = NULL;
+    
 }
 
 // Count Tab in tab
@@ -216,7 +219,6 @@ char *my_strdup(char *str)
     dup_str = malloc(my_strlen(str) + 1);
     if (!dup_str)
         return NULL;
-    
     my_strcpy(dup_str, str);
     return dup_str;
 }

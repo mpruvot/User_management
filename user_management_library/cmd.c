@@ -452,7 +452,9 @@ void free_management(t_mgmt *mgmt)
         free(temp);
         temp = NULL;
     }
-    free_double_tab(mgmt->user_input);
-    mgmt->user_input = NULL;
+   // free_double_tab(mgmt->user_input);
+    //mgmt->user_input = NULL;
+    // ----- LE PROBLEME DE LEAKS ETAIT ICI, je liberai deux fois user input
+    free(mgmt);
 }
 

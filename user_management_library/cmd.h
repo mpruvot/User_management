@@ -31,4 +31,5 @@ int name_counter(t_mgmt *mgmt);
 int add_to_history(t_mgmt *mgmt, char **input);
 
 void free_management(t_mgmt *mgmt);
+
 #endif 

@@ -56,6 +56,7 @@ int main()
         add_to_history(mgmt, user_input);
         free(to_split);
         free_double_tab(user_input);
+        
     }
 
     free_management(mgmt);
