@@ -6,11 +6,11 @@
 #include "my_struct.h"
 #include "const.h"
 
-
 int main()
 {    
     int is_running;
     int checkcmd;
+    char *to_split = NULL;
     char **user_input = NULL;
     t_mgmt *mgmt = malloc(sizeof(t_mgmt));
     if (!mgmt)
@@ -27,7 +27,9 @@ int main()
     while (is_running)
     {
         my_putstr(ASK_FOR_CMD);
-        user_input = my_split_str(get_input());
+        // it was user_input = my_plit_str(get_input()); But had leaks with this method -> pass it to get iput
+        to_split = get_input();
+        user_input = my_split_str(to_split);
         checkcmd = check_cmd(user_input, cmd);
         mgmt->user_input = user_input;
         
@@ -52,7 +54,11 @@ int main()
         }
 
         add_to_history(mgmt, user_input);
+        free(to_split);
+        free_double_tab(user_input);
     }
+
+    free_management(mgmt);
     printf("\nbye! \n");
     return 0;
 }
