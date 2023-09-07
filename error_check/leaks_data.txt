@@ -1,0 +1,108 @@
+FINAL LEAKS check
+~/Desktop/User_management development* ❯ leaks --atExit -- ./user_management
+user_management(23896) MallocStackLogging: could not tag MSL-related memory as no_footprint, so those pages will be included in process footprint - (null)
+user_management(23896) MallocStackLogging: recording malloc and VM allocation stacks using lite mode
+Welcome in user management system.
+
+Please type a command > create user marius
+user marius succefully created! 
+
+Please type a command > create user paul
+user paul succefully created! 
+
+Please type a command > create admin marius
+admin marius succefully created! 
+
+Please type a command > create admin paul
+admin paul succefully created! 
+
+Please type a command > list
+admin paul 
+admin marius 
+user paul 
+user marius 
+
+Please type a command > history
+list
+create admin paul
+create admin marius
+create user paul
+create user marius
+
+Please type a command > list user
+user paul 
+user marius 
+
+Please type a command > list admin
+admin paul 
+admin marius 
+
+Please type a command > delete user marius
+user marius have been succesfully deleted.
+
+Please type a command > delete admin marius
+admin marius have been succesfully deleted.
+
+Please type a command > list admin
+admin paul 
+
+Please type a command > delete admin marius
+Nobody found under this name !
+
+Please type a command > delete admin
+are you sure you want to delete 1 admin? y/n : 
+y
+All the admin have been succesfully deleted.
+
+Please type a command > delete user 
+are you sure you want to delete 1 user? y/n : 
+y
+All the user have been succesfully deleted.
+
+Please type a command > history
+delete user
+delete admin
+delete admin marius
+list admin
+delete admin marius
+delete user marius
+list admin
+list user
+history
+list
+create admin paul
+create admin marius
+create user paul
+create user marius
+
+Please type a command > list
+List is empty !
+
+Please type a command > exit
+
+bye! 
+Process 23896 is not debuggable. Due to security restrictions, leaks can only show or save contents of readonly memory of restricted processes.
+
+Process:         user_management [23896]
+Path:            /Users/USER/Desktop/*/user_management
+Load Address:    0x100ff4000
+Identifier:      user_management
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  leaks [23895]
+
+Date/Time:       2023-09-07 23:56:46.293 +0200
+Launch Time:     2023-09-07 23:55:28.217 +0200
+OS Version:      macOS 13.4 (22F66)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+
+Physical footprint:         3153K
+Physical footprint (peak):  3153K
+Idle exit:                  untracked
+----
+
+leaks Report Version: 4.0, multi-line stacks
+Process 23896: 224 nodes malloced for 17 KB
+Process 23896: 0 leaks for 0 total leaked bytes.

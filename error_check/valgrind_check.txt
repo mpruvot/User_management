@@ -201,3 +201,17 @@ bye!
 ==6239== 
 ==6239== For lists of detected and suppressed errors, rerun with: -s
 ==6239== ERROR SUMMARY: 6 errors from 5 contexts (suppressed: 0 from 0)
+
+
+
+//DONE 
+
+==3485== 
+==3485== HEAP SUMMARY:
+==3485==     in use at exit: 0 bytes in 0 blocks
+==3485==   total heap usage: 91 allocs, 91 frees, 2,130 bytes allocated
+==3485== 
+==3485== All heap blocks were freed -- no leaks are possible
+==3485== 
+==3485== For lists of detected and suppressed errors, rerun with: -s
+==3485== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

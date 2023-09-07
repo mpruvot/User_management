@@ -20,6 +20,8 @@ void delete_users_by_role(t_list **head_user, char *role);
 
 void delete_users_by_name(t_list **head_user, char *role, char *name);
 
+void confirm_and_delete_by_role(t_mgmt *mgmt, char *role, int role_nb);
+
 int role_counter(t_mgmt *mgmt);
 
 void print_cmd_history(t_mgmt *mgmt);

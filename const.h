@@ -7,6 +7,8 @@
 
 # define ASK_FOR_CMD "\nPlease type a command > "
 
+# define INVALID_CMD_DELETE "User_management: Invalid cmd: expected: <delete> <role> or <delete> <role> + <name>\n"
+
 # define EXIT 0
 # define CREATE 1
 # define LIST 2

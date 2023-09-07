@@ -134,7 +134,7 @@ int add_to_store_user(t_mgmt *mgmt, char **input)
 {
     if (tab_count(input) != 3)
     {
-        my_putstr_err("User_management: Invalid cmd: expected: create <admin> or <user> + <name>\n");
+        my_putstr_err(INVALID_CMD_CREATE);
         return(-1);
     }
 
@@ -159,7 +159,7 @@ int add_to_store_user(t_mgmt *mgmt, char **input)
         new_user->role = "user";
     else
     { 
-        my_putstr_err("User_management: Invalid role: expected: <admin> or <user> + <name>\n");
+        my_putstr_err(INVALID_CMD_CREATE);
         free(new_user_node);
         free(new_user);
         return -1;
@@ -218,72 +218,48 @@ int add_to_history(t_mgmt *mgmt, char **input)
 
 void user_mgmt_delete(t_mgmt *mgmt)
 {
-    if (!mgmt || !mgmt->store_user)
+    if (!mgmt || !mgmt->store_user) 
     {
         my_putstr_err("Nothing to delete here, list is already empty!\n");
         return;
     }
+
     int role_nb = role_counter(mgmt);
     int find_name = name_counter(mgmt);
     int argc = tab_count(mgmt->user_input);
     char *role = mgmt->user_input[1];
-    char *name = NULL;
-    char *to_split = NULL;
-    char **yes_no = NULL;
+    char *name = mgmt->user_input[2];
 
-    if (argc > 1 && argc < 4)
+    if (argc < 2 || argc >= 4) 
     {
-        name = mgmt->user_input[2];
-        if (argc == 2 && (my_strcmp(role, "user") == 0 || my_strcmp(role, "admin") == 0))
-        {
-            if (role_nb == 0)
-            {
-                my_putstr_err("Nothing to delete here, list is already empty!\n");
-                return;
-            }
-
-            while (1)
-            {
-                printf("are you sure you want to delete %d %s? y/n : \n", role_nb, role);
-                to_split = get_input();
-                yes_no = my_split_str(to_split);
-            
-                if (my_strcmp(yes_no[0], "y") == 0)
-                {
-                    delete_users_by_role(&mgmt->store_user, role);
-                    free(to_split);
-                    free_double_tab(yes_no);
-                    return;
-                }
-                else if (my_strcmp(yes_no[0], "n") == 0)
-                {
-                    my_putstr("Deletion cancelled !\n\n");
-                    free(to_split);
-                    free_double_tab(yes_no);                    
-                    return;
-                }
-                else
-                    my_putstr("Please enter a valid command. \n\n");
-                    free(to_split);
-                    free_double_tab(yes_no);
-            }  
-           
-        }
-        else if (argc == 3 && (my_strcmp(role, "user") == 0 || my_strcmp(role, "admin") == 0))
-        {
-            if (find_name == 0)
-            {
-                my_putstr_err("Nobody found under this name !\n");
-                return;
-            }
-            else
-                delete_users_by_name(&mgmt->store_user, role, name);
-                return;
-        }
+        my_putstr_err(INVALID_CMD_DELETE);
+        return;
     }
-    else
-       my_putstr_err("User_management: Invalid cmd: expected: <delete> <role> or <delete> <role> + <name>\n"); 
-    
+
+    if (argc == 2 && (my_strcmp(role, "user") == 0 || my_strcmp(role, "admin") == 0)) 
+    {
+        if (role_nb == 0) 
+        {
+            my_putstr_err("Nothing to delete here, list is already empty!\n");
+            return;
+        }
+        confirm_and_delete_by_role(mgmt, role, role_nb);
+    }
+    else if (argc == 2 && (my_strcmp(role, "user") == 1 || my_strcmp(role, "admin") == 1))
+    {
+        my_putstr_err(INVALID_CMD_DELETE);
+        return;
+    }
+
+    else if (argc == 3 && (my_strcmp(role, "user") == 0 || my_strcmp(role, "admin") == 0)) 
+    {
+        if (find_name == 0) 
+        {
+            my_putstr_err("Nobody found under this name !\n");
+            return;
+        }
+        delete_users_by_name(&mgmt->store_user, role, name);
+    }
 }
 
 void delete_users_by_role(t_list **head_user, char *role) 
@@ -383,6 +359,39 @@ void delete_users_by_name(t_list **head_user, char *role, char *name)
     }
 
     printf("%s %s have been succesfully deleted.\n", role, name);
+}
+
+void confirm_and_delete_by_role(t_mgmt *mgmt, char *role, int role_nb) 
+{
+    char *to_split = NULL;
+    char **yes_no = NULL;
+    while (1) 
+    {
+        printf("are you sure you want to delete %d %s? y/n : \n", role_nb, role);
+        to_split = get_input();
+        yes_no = my_split_str(to_split);
+
+        if (my_strcmp(yes_no[0], "y") == 0) 
+        {
+            delete_users_by_role(&mgmt->store_user, role);
+            free(to_split);
+            free_double_tab(yes_no);
+            break;
+        }
+        else if (my_strcmp(yes_no[0], "n") == 0) 
+        {
+            my_putstr("Deletion cancelled !\n\n");
+            free(to_split);
+            free_double_tab(yes_no);
+            break;
+        }
+        else 
+        {
+            my_putstr("Please enter a valid command. \n\n");
+            free(to_split);
+            free_double_tab(yes_no);
+        }
+    }
 }
 
 int role_counter(t_mgmt *mgmt)
