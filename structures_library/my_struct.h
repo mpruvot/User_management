@@ -26,6 +26,7 @@ typedef struct s_cmd {
   char *list;
   char *delete;
   char *history;
+  char *cmd;
 } t_cmd;
 
 typedef struct s_mgmt {

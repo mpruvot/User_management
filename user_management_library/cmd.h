@@ -32,6 +32,17 @@ int name_counter(t_mgmt *mgmt);
 
 int add_to_history(t_mgmt *mgmt, char **input);
 
+int end_of_file(int fd);
+
+int inputs_log(t_mgmt *mgmt);
+
 void free_management(t_mgmt *mgmt);
+
+void which_cmd(t_cmd cmd, int nb_cmd);
+
+
+////////////////////////////////////////////////////////////////////
+
+int inputs_log(t_mgmt *mgmt);
 
 #endif 

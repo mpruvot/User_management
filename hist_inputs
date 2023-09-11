@@ -1,0 +1,54 @@
+                                           ##### HISTORY OF USER INPUTS #####
+
+
+
+Sat Sep  9 17:41:44 2023
+create user marius
+
+Sat Sep  9 17:41:48 2023
+create user paul
+
+Sat Sep  9 17:41:53 2023
+create admin marius
+
+Sat Sep  9 17:41:55 2023
+create admin paul
+
+Sat Sep  9 17:42:05 2023
+delete user
+
+Sat Sep  9 17:42:53 2023
+delete user
+
+Sat Sep  9 17:42:56 2023
+list
+
+Sat Sep  9 17:43:00 2023
+delete admin marius
+
+Sat Sep  9 17:43:02 2023
+list
+
+Sat Sep  9 17:43:09 2023
+delete admin
+
+Sat Sep  9 17:43:13 2023
+history?
+
+Sat Sep  9 17:43:19 2023
+history
+
+Sat Sep  9 17:43:26 2023
+exit
+
+Sat Sep  9 17:59:34 2023
+hello
+
+Sat Sep  9 17:59:37 2023
+exit
+
+Sat Sep  9 18:09:30 2023
+coucou
+
+Sat Sep  9 18:09:34 2023
+exit

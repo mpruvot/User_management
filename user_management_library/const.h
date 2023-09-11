@@ -16,6 +16,7 @@
 # define LIST 2
 # define DELETE 3
 # define HISTORY 4
+# define CMD 5
 
 # define BUFF_LEN 256
 

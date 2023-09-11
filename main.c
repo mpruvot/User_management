@@ -5,9 +5,13 @@
 #include "cmd.h"
 #include "my_struct.h"
 #include "const.h"
+#include <time.h>
 
 int main()
-{    
+{   
+/*     time_t now;
+    time(&now);
+    printf("%s", ctime(&now)); */
     int is_running;
     int checkcmd;
     char *to_split = NULL;
@@ -20,7 +24,7 @@ int main()
 
     checkcmd = -1;
     is_running = 1;
-    t_cmd cmd = {"exit", "create", "list", "delete", "history"}; // Adpat check_cmd() if cmd added
+    t_cmd cmd = {"exit", "create", "list", "delete", "history", "cmd"}; // Adpat check_cmd() if cmd added
 
     my_putstr(WELCOM_MSG);
 
@@ -34,9 +38,7 @@ int main()
         mgmt->user_input = user_input;
         
         if (checkcmd == EXIT)
-        {
             is_running = 0;
-        }
         else if (checkcmd == CREATE)
             add_to_store_user(mgmt, user_input);
         else if (checkcmd == LIST)
@@ -45,6 +47,8 @@ int main()
             user_mgmt_delete(mgmt);
         else if (checkcmd == HISTORY)
             print_cmd_history(mgmt);
+        else if (checkcmd == CMD)
+            which_cmd(cmd, 6);
         else
         {    
             my_putstr_err(CMD_NOT_FOUND);
@@ -54,6 +58,7 @@ int main()
         }
 
         add_to_history(mgmt, user_input);
+        inputs_log(mgmt);
         free(to_split);
         free_double_tab(user_input);
         
